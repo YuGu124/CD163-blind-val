@@ -9,7 +9,7 @@ def main():
     # 初始化设置
     reference_folder = 'Input'  # 参考图文件夹
     rating_folders = ['Real', 'Output']  # 待评分图文件夹
-    random_seed = 999  # 固定随机种子确保可重复性
+    random_seed = 666  # 固定随机种子确保可重复性
 
     # 获取图片列表（确保所有文件夹中都有相同的图片）
     image_names = set(os.listdir(reference_folder))
@@ -39,9 +39,9 @@ def main():
             st.session_state.scores[name] = {}
         
         st.session_state.scores[name][folder] = {
-            "score1": int(st.session_state.get(f"{name}_{folder}_score1", 1)),
-            "score2": int(st.session_state.get(f"{name}_{folder}_score2", 1)),
-            "score3": int(st.session_state.get(f"{name}_{folder}_score3", 1))
+            "score1": int(st.session_state.get(f"{name}_{folder}_score1", 5)),
+            "score2": int(st.session_state.get(f"{name}_{folder}_score2", 5)),
+            "score3": int(st.session_state.get(f"{name}_{folder}_score3", 5))
         }
 
     # 页面标题和样式
@@ -109,9 +109,9 @@ def main():
         
         # 三个评分维度
         dimensions = [
-            ("细胞核细节", f"{current_image_name}_{current_folder}_score1", saved_scores.get("score1", 1)),
-            ("染色模式一致性", f"{current_image_name}_{current_folder}_score2", saved_scores.get("score2", 1)),
-            ("无非特异性染色", f"{current_image_name}_{current_folder}_score3", saved_scores.get("score3", 1))
+            ("细胞核细节", f"{current_image_name}_{current_folder}_score1", saved_scores.get("score1", 5)),
+            ("染色模式一致性", f"{current_image_name}_{current_folder}_score2", saved_scores.get("score2", 5)),
+            ("无非特异性染色", f"{current_image_name}_{current_folder}_score3", saved_scores.get("score3", 5))
         ]
 
         for label, key, default_value in dimensions:
@@ -187,4 +187,5 @@ def main():
     st.markdown("- **无非特异性染色**: 背景干净、无染色伪影")
 
 if __name__ == "__main__":
+
     main()
