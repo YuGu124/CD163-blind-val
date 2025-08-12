@@ -83,6 +83,7 @@ def main():
     col1, col2, col3 = st.columns([1, 1, 1])  # 三列等宽
 
     # 第一列：参考图
+    angle = random.choice([90, 180, 270])
     with col1:
         ref_img_path = os.path.join(reference_folder, current_image_name)
         if os.path.exists(ref_img_path):
@@ -191,4 +192,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
