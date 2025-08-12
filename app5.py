@@ -87,6 +87,7 @@ def main():
         ref_img_path = os.path.join(reference_folder, current_image_name)
         if os.path.exists(ref_img_path):
             ref_img = Image.open(ref_img_path)
+            ref_img = ref_img.rotate(angle, expand=True)
             st.image(ref_img, caption="参考图", use_container_width=True, clamp=True)
         else:
             st.warning(f"参考图 {current_image_name} 不存在")
@@ -96,6 +97,7 @@ def main():
         rating_img_path = os.path.join(current_folder, current_image_name)
         if os.path.exists(rating_img_path):
             rating_img = Image.open(rating_img_path)
+            rating_img = rating_img.rotate(angle, expand=True) 
             st.image(rating_img, caption="待评分图像", use_container_width=True, clamp=True)
         else:
             st.error(f"待评分图 {current_image_name} 不存在")
@@ -189,3 +191,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
